@@ -57,7 +57,7 @@
         element.innerHTML = placeholder !== null ? placeholder : 'Edit me';
       }
 
-      // element.addEventListener('blur', cleanContent);
+      element.addEventListener('blur', cleanContent);
       element.addEventListener('focus', emptyEditable);
     };
 
