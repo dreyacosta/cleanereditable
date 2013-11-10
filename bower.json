@@ -1,0 +1,22 @@
+{
+  "name": "cleanerEditable",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dreyacosta/cleanerEditable",
+  "authors": [
+    "David Rey <david.rey.acosta@gmail.com>"
+  ],
+  "description": "A small contenteditable cleaner",
+  "main": "cleanerEditable.js",
+  "keywords": [
+    "contenteditable",
+    "clean"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
