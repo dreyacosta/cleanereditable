@@ -1,7 +1,7 @@
 # cleanereditable
 ### A small contenteditable cleaner
 
-Just a little library to clean &lt;contenteditable="true" /&gt; styles on blur event.
+Just a little library to clean `<contenteditable="true" />` styles on blur event.
 
 You can also add `data-placeholder='Whatever you want'` to simulate a placeholder.
 
