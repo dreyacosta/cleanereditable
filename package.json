@@ -1,0 +1,28 @@
+{
+  "name": "cleanereditable",
+  "version": "0.0.1",
+  "description": "A small contenteditable cleaner",
+  "main": "cleanereditable.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dreyacosta/cleanereditable.git"
+  },
+  "keywords": [
+    "contenteditable",
+    "cleaner"
+  ],
+  "author": "David Rey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dreyacosta/cleanereditable/issues"
+  },
+  "devDependencies": {
+    "jshint": "~2.3.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-jshint": "~0.7.1"
+  }
+}
