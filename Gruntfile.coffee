@@ -6,6 +6,7 @@ module.exports = (grunt) ->
       compile:
         files:
           'dist/cleanereditable.js': 'src/cleanereditable.coffee'
+          'spec/cleaner.spec.js': 'spec/cleaner.spec.coffee'
 
     uglify:
       options:
@@ -18,16 +19,16 @@ module.exports = (grunt) ->
       pivotal:
         src: 'dist/**/*.js'
         options:
-          specs: 'spec/**/*.js'
+          specs: 'spec/**/*.spec.js'
 
     watch:
       coffee:
-        files: ['src/**/*.coffee']
-        tasks: ['coffee', 'uglify']
+        files: ['src/**/*.coffee', 'spec/**/*.coffee']
+        tasks: ['coffee', 'uglify', 'jasmine']
 
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-jasmine'
     grunt.loadNpmTasks 'grunt-contrib-uglify'
     grunt.loadNpmTasks 'grunt-contrib-watch'
 
-    grunt.registerTask 'default', ['coffee', 'uglify']
+    grunt.registerTask 'default', ['coffee', 'uglify', 'jasmine']
