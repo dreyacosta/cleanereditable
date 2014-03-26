@@ -10,19 +10,22 @@
 
   cleaner.VERSION = '0.1.0'
 
+  options =
+    selector: '[contenteditable="true"]'
+    listeners: true
+
   addListeners = cleaner.addListeners = (nodes) ->
     for node in nodes
       node.addEventListener('blur', cleanDOMEl)
       node.addEventListener('focus', emptyDOMEl)
+    return
 
   cleanChildNodes = cleaner.cleanChildNodes = (childNodes) ->
     encapsulateText child for child in childNodes
 
   cleanDOMEl = cleaner.cleanDOMEl = (event) ->
     el = event.currentTarget
-
     return el.innerHTML = el.getAttribute 'data-placeholder' if isEmpty el
-
     result = cleanChildNodes el.childNodes
     el.innerHTML = result.join '' if result.length > 0
 
@@ -42,7 +45,7 @@
     document.querySelectorAll(selector)
 
   isEmpty = cleaner.isEmpty = (el) ->
-    options = ['<p><br></p>', '', '__', el.getAttribute 'data-placeholder']
+    options = ['<p><br></p>', '', el.getAttribute 'data-placeholder']
     return true for option in options when option is el.innerHTML
     return false
 
@@ -50,17 +53,16 @@
     for node in nodes
       getAttribute node
 
-  init = cleaner.init = (options) ->
-    options = options || {}
-
+  init = cleaner.init = (config) ->
+    config = config || {}
+    options =
+      selector: config.selector || options.selector
+      listeners: config.listeners || options.listeners
     if !options.selector
       return console.log 'DOM selector must be specify'
-
     if options.listeners
       addListeners(getElements options.selector)
-
     setPlaceholder(getElements options.selector)
-
     return
 
   cleaner
