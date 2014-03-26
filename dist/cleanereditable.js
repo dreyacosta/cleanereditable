@@ -1,7 +1,7 @@
 (function() {
   (function(root) {
     'use strict';
-    var addListeners, cleanChildNodes, cleanDOMEl, cleaner, emptyDOMEl, encapsulateText, getAttribute, getElements, init, isEmpty, setPlaceholder;
+    var addListeners, cleanChildNodes, cleanDOMEl, cleaner, emptyDOMEl, encapsulateText, getAttribute, getElements, init, isEmpty, options, setPlaceholder;
     cleaner = {};
     if (typeof exports !== 'undefined') {
       cleaner = exports;
@@ -9,15 +9,17 @@
       cleaner = root.cleaner = {};
     }
     cleaner.VERSION = '0.1.0';
+    options = {
+      selector: '[contenteditable="true"]',
+      listeners: true
+    };
     addListeners = cleaner.addListeners = function(nodes) {
-      var node, _i, _len, _results;
-      _results = [];
+      var node, _i, _len;
       for (_i = 0, _len = nodes.length; _i < _len; _i++) {
         node = nodes[_i];
         node.addEventListener('blur', cleanDOMEl);
-        _results.push(node.addEventListener('focus', emptyDOMEl));
+        node.addEventListener('focus', emptyDOMEl);
       }
-      return _results;
     };
     cleanChildNodes = cleaner.cleanChildNodes = function(childNodes) {
       var child, _i, _len, _results;
@@ -60,8 +62,8 @@
       return document.querySelectorAll(selector);
     };
     isEmpty = cleaner.isEmpty = function(el) {
-      var option, options, _i, _len;
-      options = ['<p><br></p>', '', '__', el.getAttribute('data-placeholder')];
+      var option, _i, _len;
+      options = ['<p><br></p>', '', el.getAttribute('data-placeholder')];
       for (_i = 0, _len = options.length; _i < _len; _i++) {
         option = options[_i];
         if (option === el.innerHTML) {
@@ -79,8 +81,12 @@
       }
       return _results;
     };
-    init = cleaner.init = function(options) {
-      options = options || {};
+    init = cleaner.init = function(config) {
+      config = config || {};
+      options = {
+        selector: config.selector || options.selector,
+        listeners: config.listeners || options.listeners
+      };
       if (!options.selector) {
         return console.log('DOM selector must be specify');
       }
